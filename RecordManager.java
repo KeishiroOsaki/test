@@ -47,6 +47,14 @@ public final class RecordManager {
 		return list;
 	}
 
+    /** レコードのリスト */
+    private static List<Item> recordList = new ArrayList<>();
 
+    public List<Item> getRecordList() {
+        return recordList;
+    }
+    public void setRecordList(List<Item> recordList) {
+        this.recordList = recordList;
+    }
 }
 //Copyright 2015 FUJITSU APPLICATIONS LIMITED
