@@ -14,7 +14,7 @@
 </head>
 <body>
 <div class="header">
-	××オンラインショップ
+	ぽんりえオンラインショップ
 	<%  Calendar calendar = Calendar.getInstance();
    		SimpleDateFormat sdf = new SimpleDateFormat();
    		sdf.applyPattern("MM月dd日(E)");
@@ -22,20 +22,19 @@
    	<%= sdf.format(calendar.getTime()) %>
 </div>
 
-<div>
-			<span class="itemName">商品：</span>
-			<%-- <form:form modelAttribute="SalesForm">
-				<form:input path = "quantity" /> --%>
-					<%--<form:select path="goods" items="${ItemList}"/> --%>
-		</div>
-		<div>
-			<span class="amount">点数：</span>
-			<form:form modelAttribute="salesForm" action="/start">
-			<form:input path="quantity" size="31" />
-			</form:form>
-		</div>
-		<div>
-			<input type="submit" name="meisaiadd" value="明細追加" />
-		</div>
+<form:form modelAttribute="SalesForm">
+    <div>
+        <span class="itemName">商品：</span>
+        <form:select path="name" items="${ItemList}"/>
+    </div>
+    <div>
+        <span class="amount">点数：</span>
+        <form:input path="quantity" size="31" />
+    </div>
+    <div>
+        <input type="submit" name="meisaiadd" value="明細追加" />
+    </div>
+</form:form>
+
 </body>
 </html>
