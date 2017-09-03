@@ -32,6 +32,16 @@ public class SalesSystemController {
 		return INIT;
 	}
 
+    @RequestMapping(value = "/meisaiadd")
+	public String init(@ModelAttribute("SalesForm") SalesForm form,Model model) {
+		List<Item> list = RecordManager.getItemList();
+		model.addAttribute("ItemList",list);
+        model.addAttribute("recordList",RecordManager.getRecordList())
+        model.addAttribute("s_msg","")
+        model.addAttribute("e_msg","")
+		return add;
+	}
+
 	@RequestMapping(params = "list")
 	public String list(Model model){
 		List<Item> list = RecordManager.getItemList();
