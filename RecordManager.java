@@ -39,6 +39,16 @@ public final class RecordManager {
 
 //    }
 
+    //直接名前取ろうとおもった
+public static String getItemListaa(){
+		String itemname = null;
+		for(int i = 0 ; i < list.size(); i++){
+			itemname = list.get(i).getName();
+			System.out.println(itemname);
+		}
+		return itemname;
+	}
+
 	public static List<Item> getItemList(){
 		for(int i = 0 ; i < list.size(); i++){
 			System.out.print(list.get(i));
@@ -47,14 +57,5 @@ public final class RecordManager {
 		return list;
 	}
 
-    /** レコードのリスト */
-    private static List<Item> recordList = new ArrayList<>();
-
-    public List<Item> getRecordList() {
-        return recordList;
-    }
-    public void setRecordList(List<Item> recordList) {
-        this.recordList = recordList;
-    }
 }
 //Copyright 2015 FUJITSU APPLICATIONS LIMITED
