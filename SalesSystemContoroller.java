@@ -28,18 +28,10 @@ public class SalesSystemController {
 	@RequestMapping(value = "/start")
 	public String init(SalesForm form,Model model) {
 		List<Item> list = RecordManager.getItemList();
+		//String itemname = RecordManager.getItemList();　ここらへんで名前を直接取ろうとしたら怒られた
 		model.addAttribute("ItemList",list);
+		//model.addAttribute("ItemList",itemname);
 		return INIT;
-	}
-
-    @RequestMapping(value = "/meisaiadd")
-	public String init(@ModelAttribute("SalesForm") SalesForm form,Model model) {
-		List<Item> list = RecordManager.getItemList();
-		model.addAttribute("ItemList",list);
-        model.addAttribute("recordList",RecordManager.getRecordList())
-        model.addAttribute("s_msg","")
-        model.addAttribute("e_msg","")
-		return add;
 	}
 
 	@RequestMapping(params = "list")
@@ -49,6 +41,17 @@ public class SalesSystemController {
 		return LIST;
 	}
 
+	
+	
+
+	@RequestMapping(params = "add")
+	public String list(Model model){
+		List<Item> list = RecordManager.getItemList();
+		model.addAttribute("ItemList",list);
+		return LIST;
+	}
+
+	
 	/*@RequestMapping(params = "meisaiadd")
 	public String add(SalesForm form,Model model) {
 		model.addAttribute("s_message",ADD_SUCCESS_MSG);
