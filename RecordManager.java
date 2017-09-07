@@ -2,6 +2,7 @@ package jp.practice.sales;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * 商品データ全体を保持するクラス
@@ -40,7 +41,7 @@ public final class RecordManager {
 //    }
 
     //直接名前取ろうとおもった
-public static String getItemListaa(){
+	public static String getItemListaa(){
 		String itemname = null;
 		for(int i = 0 ; i < list.size(); i++){
 			itemname = list.get(i).getName();
@@ -55,6 +56,12 @@ public static String getItemListaa(){
 
 		}
 		return list;
+	}
+	
+	/** List<Item>をList<String>に変換するメソッド */
+	public static List<String> getItemListStr() {
+		List<String> itemNameList = list.stream().map(x -> x.getName()).collect(Collectors.toList());
+		return itemNameList;
 	}
 
 }
