@@ -22,21 +22,22 @@
    	<%= sdf.format(calendar.getTime()) %>
 </div>
 
-<div>
+
+
+<form:form modelAttribute="salesForm" action="/start">
+		<div>
 			<span class="itemName">商品：</span>
-			<form:form modelAttribute="salesForm" action="/start">
+<%--			<form:form modelAttribute="salesForm" action="/start">  --%>
 				<form:select path = "name" items="${ItemList}"/>
-					<%--<form:select path="goods" items="${ItemList}"/> --%>
-			</form:form>
 		</div>
 		<div>
 			<span class="amount">点数：</span>
-			<form:form modelAttribute="salesForm" action="/start">
+<%--			<form:form modelAttribute="salesForm" action="/start">  --%>
 			<form:input path="quantity" size="31" />
-			</form:form>
 		</div>
 		<div>
-			<input type="submit" name="meisaiadd" value="明細追加" />
+			<input type="submit" name="add" value="明細追加" />　
 		</div>
+</form:form>
 </body>
 </html>
