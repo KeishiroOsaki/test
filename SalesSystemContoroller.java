@@ -27,7 +27,7 @@ public class SalesSystemController {
 	 */
 	@RequestMapping(value = "/start")
 	public String init(SalesForm form,Model model) {
-		List<Item> list = RecordManager.getItemListStr();
+		List<String> list = RecordManager.getItemListStr();
 		//String itemname = RecordManager.getItemList();　ここらへんで名前を直接取ろうとしたら怒られた
 		model.addAttribute("ItemList",list);
 		//model.addAttribute("ItemList",itemname);
@@ -41,8 +41,8 @@ public class SalesSystemController {
 		return LIST;
 	}
 
-	
-	
+
+
 
 	@RequestMapping(params = "add")
 	public String list(Model model){
@@ -51,7 +51,7 @@ public class SalesSystemController {
 		return LIST;
 	}
 
-	
+
 	/*@RequestMapping(params = "meisaiadd")
 	public String add(SalesForm form,Model model) {
 		model.addAttribute("s_message",ADD_SUCCESS_MSG);
