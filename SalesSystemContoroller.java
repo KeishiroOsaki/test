@@ -27,7 +27,7 @@ public class SalesSystemController {
 	 */
 	@RequestMapping(value = "/start")
 	public String init(SalesForm form,Model model) {
-		List<Item> list = RecordManager.getItemList();
+		List<Item> list = RecordManager.getItemListStr();
 		//String itemname = RecordManager.getItemList();　ここらへんで名前を直接取ろうとしたら怒られた
 		model.addAttribute("ItemList",list);
 		//model.addAttribute("ItemList",itemname);
