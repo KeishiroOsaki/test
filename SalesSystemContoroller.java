@@ -34,7 +34,7 @@ public class SalesSystemController {
 
 
 
-	@RequestMapping(params = "add") //addに遷移しない。。
+	@RequestMapping(params = "add") 
 	public String add(Model model){
 		return ADD;
 	}
