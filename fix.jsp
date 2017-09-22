@@ -38,13 +38,13 @@
 
 <%--売り上げIDを求める --%>
 <%
-	/*LocalDateTime from = LocalDateTime.of(1970, 1, 1,  0,  0);
-	LocalDateTime to = LocalDateTime.now();*/
-	DateTimeUtils.currentTimeMillis();
-	DateTimeUtils.setCurrentMillisFixed(millis);
-	Duration duration = Duration.minusMillis(from);
+	LocalDateTime from = LocalDateTime.of(1970, 1, 1,  0,  0);
+	LocalDateTime to = LocalDateTime.now();
+	Duration duration = Duration.between(from,to);
+	long uriage_id = duration.toMillis();
+
 %>
-売上ID = <%= duration %>
+売上ID = <%= uriage_id %>
 <br><br><br>
 
 
