@@ -40,14 +40,16 @@ public class SalesSystemController {
 
 
 
-	@RequestMapping(params = "add")
-	public String add(Model model){
-		/*
-		List<String> id = RecordManager.getItemListStr()；
-		model.addAttribute("recordList", id);
-		model.addAttribute("recordList",price);
-		model.addAllAttributes("recordList",quantity);
-		model.addAllAttributes("recordList",sum);Listに追加していきたい。。。*/
+	@RequestMapping(params = "add")　//★ここをどうにかattributeとかすれば明細画面ができることは知ってる…
+	public String add(SalesForm form,Model model){
+		//List<String> meisaiList = RecordManager.setItemList();
+ 		/*model.addAttribute("name",form.getName()); //商品名
+		model.addAttribute("quantity",form.getQuantity());//個数*/
+
+		List<String> recordList = new ArrayList<String>();
+		recordList.add(form.getName(),form.getQuantity());
+		model.addAttribute("recordList",recordList);
+
 		return ADD;
 	}
 
