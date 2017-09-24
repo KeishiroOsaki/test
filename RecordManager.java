@@ -56,8 +56,21 @@ public final class RecordManager {
 
 		}
 		return list;
-	}
-	
+    }
+    
+    /** 指定された名前の商品のインスタンスを新規に生成 */
+    public static Item getItemOf(String name) {
+        Item gotItem = list.stream().filter(s -> s.getName().equals(name)).findFirst().get();
+        return new Item(gotItem.getId(), gotItem.getName(), gotItem.getPrice(), 0, 0);
+    }
+    
+    /** 削除フラグがtrueのアイテムを削除 */
+    public static void deleteItem(List<Item> recordList) {
+        deleteItem = recordList.stream().filter(i -> i.getRemoveFlg() == true).findFirst().get();
+        recordList.remove(deleteItem);
+
+    }
+
 	/** List<Item>をList<String>に変換するメソッド */
 	public static List<String> getItemListStr() {
 		List<String> itemNameList = list.stream().map(x -> x.getName()).collect(Collectors.toList());
