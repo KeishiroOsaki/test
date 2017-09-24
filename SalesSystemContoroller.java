@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //俺がgitを使う練習
+//俺がgitを使う練習に付き合わされている
 
 /**
  * Handles requests for the application home page.
