@@ -60,22 +60,25 @@
 <table border = "1">
 <tr><th>削除</th><th>商品ID</th><th>商品名</th><th>単価</th><th>点数</th><th>小計</th></tr>
 
-<td><c:out value="<%= num %>" /></td>
 
-<%--けす<c:forEach var="i" items="${recordList}">
-<tr>
-<%-- ラジオボタン<td><form:radiobutton ></td>
-いったんけす<td><c:out value="${i.getId()}" /></td> --%>
-
-<%-- けす
-<td><c:out value="num" /></td>
-
-<td><c:out value="${i.getName()}" /></td>
-<td><c:out value="${i.getPrice()}" /></td>
-<td><c:out value="${i.getQuantity()}" /></td>
-<td><c:out value="${i.getSubtotal()}" /></td>
+<tr th:each="record : ${recordList}">
+<%--
+<td><form:radiobutton ></td>
+<td><c:out value="${i.id}" /></td> 
+<td><c:out value="${i.name}" /></td>
+<td><c:out value="${i.price}" /></td>
+<td><c:out value="${i.quantity}" /></td>
+<td><c:out value="${i.subtotal}" /></td>
+</c:forEach>
+--%> 
+<td><input type="radio" th:field="*{type}" th:value="${record}" /></td>
+<td th:text="${record.name}">Name</td>
+<td th:text="${record.id}">Id</td>
+<td th:text="${record.name}">Name</td>
+<td th:text="${record.price}">Price</td>
+<td th:text="${record.quantity}">Quantity</td>
+<td th:text="${record.subtotal}">Subtotal</td>
 </tr>
-</c:forEach> --%>
 </table>
 
 
