@@ -3,6 +3,10 @@ package jp.practice.sales;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,11 +21,14 @@ public class SalesSystemController {
 	private static final String INIT = "init";
 	private static final String ADD = "add";
 	private static final String FIX = "fix";
+	private static final String DELETE = "delete";
 
 
 	//明細に追加する
-    private static List<Item> recordList = new ArrayList<>();
+    //private static List<Item> recordList = new ArrayList<Item>();
 
+	@Autowired
+	HttpSession session;
 
 	//文言
 	private static final String ADD_SUCCESS_MSG = "明細に追加しました";
@@ -46,9 +53,20 @@ public class SalesSystemController {
  		/*model.addAttribute("name",form.getName()); //商品名
 		model.addAttribute("quantity",form.getQuantity());//個数*/
 
-		List<String> recordList = new ArrayList<String>();
-		recordList.add(form.getName(),form.getQuantity());
-		model.addAttribute("recordList",recordList);
+		/*List<String> recordList = new ArrayList<String>();*/
+		//recordList.add(form.getName(),form.getQuantity());
+		
+		//セッションからレコードリストを取り出し
+		List<Item> recordList = (List<Item>) session.getAttribute("recordList");
+
+		//Itemを格納
+		Item tmpItem = RecordManager.getItemOf(form.getName());
+		tmpItem.setQuantity(form.getQuantity());
+		tmpItem.setSubtotal(tmpItem.getPrice()*tmpItem.getQuantity());
+		recordList.add(tmpItem);
+
+		//レコードリストをセッションに格納
+		session.addAttribute("recordList",recordList);
 
 		return ADD;
 	}
@@ -77,10 +95,29 @@ public class SalesSystemController {
 		return FIX;
 	}
 
+	@RequestMapping(params = "delete")
+	public String delete(Model model){
+		//セッションからレコードリストを取り出し
+		List<Item> recordList = (List<Item>) session.getAttribute("recordList");
+
+		RecordManager.deleteItem(recordList);
+		
+		//レコードリストをセッションに格納
+		session.addAttribute("recordList",recordList);
+
+		return DELETE;
+	}
+
 	@RequestMapping(params = "init")
 	public String syuryo(SalesForm form,Model model){
 		List<String> list = RecordManager.getItemListStr();
 		model.addAttribute("ItemList",list);
+
+		//空のレコードリストをセッションに格納
+		List<Item> recordList = new ArrayList<Item>();
+		session.addAttribute("recordList",recordList);
+		
+
 		return INIT;
 	}
 
