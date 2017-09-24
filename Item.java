@@ -3,8 +3,10 @@ package jp.practice.sales;
 /**
  * 売上明細1件分のデータを保持するクラス
  */
-public class Item {
+public class Item{
 
+	/**削除フラグ */
+	private boolean removeFlg;
     /** 商品id */
     private String id;
     /** 商品名 */
@@ -25,12 +27,27 @@ public class Item {
      * @param subtotal 小計
      */
     public Item(String id, String name, int price, int quantity, int subtotal) {
-        this.id = id;
+		this.removeFlg = false;
+		this.id = id;
         this.name = name;
         this.price = price;
         this.quantity = quantity;
         this.subtotal = subtotal;
     }
+
+	/**
+	 * @return removeFlg
+	 */
+	public boolean getRemoveFlg() {
+		return removeFlg;
+	}
+
+	/**
+	 * @param removeFlg セットする removeFlg
+	 */
+	public void setRemoveFlg(boolean removeFlg) {
+		this.removeFlg = removeFlg;
+	}
 
 	/**
 	 * @return id
