@@ -11,6 +11,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+//俺がgitを使う練習
+
 /**
  * Handles requests for the application home page.
  */
