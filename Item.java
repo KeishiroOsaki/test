@@ -156,4 +156,3 @@ public class Item{
 	}
 
 }
-//Copyright 2015 FUJITSU APPLICATIONS LIMITED
