@@ -78,4 +78,3 @@ public final class RecordManager {
 	}
 
 }
-//Copyright 2015 FUJITSU APPLICATIONS LIMITED
