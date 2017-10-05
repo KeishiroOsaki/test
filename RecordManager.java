@@ -58,7 +58,7 @@ public final class RecordManager {
 		return list;
     }
 
-    /** 指定された名前の商品のインスタンスを新規に生成 */
+    /** 指定された名前の商品のインスタンスを新規に生成 */　//例外ハンドリングつけた20171005
     public static Item getItemOf(String name) {
 
     			try{
