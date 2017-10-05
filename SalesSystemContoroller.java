@@ -6,13 +6,10 @@ import java.util.List;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-//俺がgitを使う練習
-//俺がgitを使う練習に付き合わされている
 
 /**
  * Handles requests for the application home page.
@@ -50,7 +47,7 @@ public class SalesSystemController {
 
 
 
-	@RequestMapping(params = "add")　//★ここをどうにかattributeとかすれば明細画面ができることは知ってる…
+	@RequestMapping(params = "add")
 	public String add(SalesForm form,Model model){
 		//List<String> meisaiList = RecordManager.setItemList();
  		/*model.addAttribute("name",form.getName()); //商品名
@@ -58,20 +55,36 @@ public class SalesSystemController {
 
 		/*List<String> recordList = new ArrayList<String>();*/
 		//recordList.add(form.getName(),form.getQuantity());
-		
+
 		//セッションからレコードリストを取り出し
 		List<Item> recordList = (List<Item>) session.getAttribute("recordList");
 
 		//Itemを格納
 		Item tmpItem = RecordManager.getItemOf(form.getName());
+
+		//getItemOfで例外処理してインスタンスにnullが入ってたら何もしないでほしいい20171005
+		if(tmpItem.getName() == null){
+
+		}else{
+		//ここまで
+
 		tmpItem.setQuantity(form.getQuantity());
 		tmpItem.setSubtotal(tmpItem.getPrice()*tmpItem.getQuantity());
 		recordList.add(tmpItem);
 
 		//レコードリストをセッションに格納
-		session.addAttribute("recordList",recordList);
+		//session.addAttribute("recordList",recordList);
+		session.setAttribute("recordList",recordList);
+		}
 
 		return ADD;
+	}
+
+
+
+	private void If(boolean b) {
+		// TODO 自動生成されたメソッド・スタブ
+
 	}
 
 
@@ -104,9 +117,9 @@ public class SalesSystemController {
 		List<Item> recordList = (List<Item>) session.getAttribute("recordList");
 
 		RecordManager.deleteItem(recordList);
-		
+
 		//レコードリストをセッションに格納
-		session.addAttribute("recordList",recordList);
+		session.setAttribute("recordList",recordList);
 
 		return DELETE;
 	}
@@ -118,8 +131,8 @@ public class SalesSystemController {
 
 		//空のレコードリストをセッションに格納
 		List<Item> recordList = new ArrayList<Item>();
-		session.addAttribute("recordList",recordList);
-		
+		session.setAttribute("recordList",recordList);
+
 
 		return INIT;
 	}
