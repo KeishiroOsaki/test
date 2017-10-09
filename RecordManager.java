@@ -2,7 +2,6 @@ package jp.practice.sales;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 商品データ全体を保持するクラス
@@ -58,7 +57,7 @@ public final class RecordManager {
 		return list;
     }
 
-    /** 指定された名前の商品のインスタンスを新規に生成 */　//例外ハンドリングつけた20171005
+    /** 指定された名前の商品のインスタンスを新規に生成 */ //例外ハンドリングつけた20171005
     public static Item getItemOf(String name) {
 
     			try{
@@ -78,16 +77,23 @@ public final class RecordManager {
 
     /** 削除フラグがtrueのアイテムを削除 */
     public static void deleteItem(List<Item> recordList) {
-        deleteItem = recordList.stream().filter(i -> i.getRemoveFlg() == true).findFirst().get();
-        recordList.remove(deleteItem);
-
+        for (Item record : recordList){
+        	//ヒットしたら削除
+        	if (record.getRemoveFlg() == true) {
+        		recordList.remove(record);
+        		break;
+        	} 
+        }
     }
+
 
 	/** List<Item>をList<String>に変換するメソッド */
 	public static List<String> getItemListStr() {
-		List<String> itemNameList = list.stream().map(x -> x.getName()).collect(Collectors.toList());
+		List<String> itemNameList = new ArrayList<String>();
+		for (Item item : list) {
+			itemNameList.add(item.getName());
+		}
 		return itemNameList;
 	}
 
 }
-//Copyright 2015 FUJITSU APPLICATIONS LIMITED
