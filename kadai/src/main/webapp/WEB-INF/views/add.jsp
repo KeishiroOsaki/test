@@ -74,7 +74,6 @@
 <td><input type="radio" th:field="*{type}" th:value="${record}" /></td>
 <td th:text="${record.name}">Name</td>
 <td th:text="${record.id}">Id</td>
-<td th:text="${record.name}">Name</td>
 <td th:text="${record.price}">Price</td>
 <td th:text="${record.quantity}">Quantity</td>
 <td th:text="${record.subtotal}">Subtotal</td>
